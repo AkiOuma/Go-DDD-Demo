@@ -16,10 +16,6 @@ func (pass *Password) validatePassword(password string) error {
 	return nil
 }
 
-func (pass *Password) ChangePassword(newPassword string) error {
-	return pass.setPassword(newPassword)
-}
-
 func (pass *Password) GetPassword() string {
 	return pass.decrypt(pass.value)
 }
@@ -42,15 +38,4 @@ func (pass *Password) decrypt(password string) string {
 
 func (pass *Password) Equal(password string) bool {
 	return pass.GetPassword() == password
-}
-
-func (pass *Password) ResetPassword() string {
-	// random password rule here
-	newPassword := "someword"
-	for {
-		if err := pass.setPassword(newPassword); err == nil {
-			break
-		}
-	}
-	return newPassword
 }

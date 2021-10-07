@@ -33,10 +33,6 @@ func (phone *Phone) setPhone(phoneNumber string) error {
 	return nil
 }
 
-func (phone *Phone) UpdatePhone(phoneNumber string) error {
-	return phone.setPhone(phoneNumber)
-}
-
 func (phone *Phone) GetPhoneNumber() string {
 	return phone.number
 }

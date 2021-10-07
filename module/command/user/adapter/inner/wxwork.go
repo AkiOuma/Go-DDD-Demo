@@ -32,11 +32,13 @@ func (client *WxworkClient) WxworkUserList() []*valobj.UserProfile {
 }
 
 func (WxworkClient) userProfileTransfer(detail *types.UserDetail) *valobj.UserProfile {
-	profile := &valobj.UserProfile{}
-	profile.SetUserID(detail.UserID)
-	profile.SetUserName(detail.Name)
-	profile.SetEmail(detail.Email)
-	profile.SetAvatar(detail.Avatar)
-	profile.SetPhone(detail.Phone)
+	profile := valobj.NewUserProfile(
+		detail.UserID,
+		detail.Name,
+		detail.Email,
+		detail.Phone,
+		"",
+		detail.Avatar,
+	)
 	return profile
 }

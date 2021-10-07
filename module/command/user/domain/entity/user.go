@@ -51,18 +51,24 @@ func (entity *UserEntity) Deactive() {
 }
 
 func (entity *UserEntity) ChangePassword(oldPassword, newPassword string) error {
+	var err error
 	if err := entity.ValidatePassword(oldPassword); err != nil {
 		return err
 	}
-	return entity.password.ChangePassword(newPassword)
+	entity.password, err = valobj.NewPassword(newPassword)
+	return err
 }
 
 func (entity *UserEntity) ChangeEmail(newAddress string) error {
-	return entity.email.UpdateEmail(newAddress)
+	var err error
+	entity.email, err = valobj.NewEmail(newAddress)
+	return err
 }
 
 func (entity *UserEntity) ChangePhone(newNumber string) error {
-	return entity.phone.UpdatePhone(newNumber)
+	var err error
+	entity.phone, err = valobj.NewPhone(newNumber)
+	return err
 }
 
 func (entity *UserEntity) ChangeOrganization(code string) {
@@ -70,7 +76,9 @@ func (entity *UserEntity) ChangeOrganization(code string) {
 }
 
 func (entity *UserEntity) ChangeAvatar(url string) error {
-	return entity.avatar.ChangeAvatar(url)
+	var err error
+	entity.avatar, err = valobj.NewAvatar(url)
+	return err
 }
 
 func (entity *UserEntity) ValidatePassword(password string) error {
@@ -80,8 +88,10 @@ func (entity *UserEntity) ValidatePassword(password string) error {
 	return nil
 }
 
-func (entity *UserEntity) ResetPassword() string {
-	return entity.password.ResetPassword()
+func (entity *UserEntity) ResetPassword() error {
+	var err error
+	entity.password, err = valobj.NewPassword("newpassword")
+	return err
 }
 
 // Getter

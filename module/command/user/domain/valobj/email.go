@@ -33,9 +33,9 @@ func (email *Email) setEmail(address string) error {
 	return nil
 }
 
-func (email *Email) UpdateEmail(newAddress string) error {
-	return email.setEmail(newAddress)
-}
+// func (email *Email) UpdateEmail(newAddress string) error {
+// 	return email.setEmail(newAddress)
+// }
 
 func (email *Email) GetEmailAddress() string {
 	return email.address

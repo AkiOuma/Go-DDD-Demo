@@ -26,10 +26,6 @@ func (avatar *Avatar) setAvatarUrl(url string) error {
 	return nil
 }
 
-func (avatar *Avatar) ChangeAvatar(url string) error {
-	return avatar.setAvatarUrl(url)
-}
-
 func (avatar *Avatar) GetAvatarUrl() string {
 	return avatar.url
 }
